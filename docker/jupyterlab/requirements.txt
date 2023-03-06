@@ -1,0 +1,4 @@
+diffusers==0.14.0
+transformers 
+ftfy 
+accelerate

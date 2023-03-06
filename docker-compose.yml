@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  jupyterlab:
+    user: root
+    build: 
+      context: ./docker/jupyterlab
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    environment:
+      - JUPYTER_ENABLE_LAB='yes'
+      - GRANT_SUDO='yes'
+      - AUTH_TOKEN
+
+  fastapi:
+    build:
+      context: ./docker/fastapi
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    command: ["uvicorn", "main:app", "--host=0.0.0.0", "--reload"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    volumes:
+      - ./api:/app
+    environment:
+      - AUTH_TOKEN
+
+  streamlit:
+    build:
+      context: ./docker/streamlit
+      dockerfile: Dockerfile
+    ports:
+      - 8501:8501
+    command: ["streamlit", "run", "app.py", "--server.baseUrlPath", "/app"]
+    volumes:
+      - ./app:/app
+  

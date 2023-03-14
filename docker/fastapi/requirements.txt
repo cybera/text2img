@@ -1,0 +1,8 @@
+fastapi[all]
+diffusers==0.14.0
+transformers 
+ftfy 
+accelerate
+mypy
+ruff
+black

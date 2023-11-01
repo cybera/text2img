@@ -8,6 +8,10 @@ This repository is part of the workshop covered under the [Applied Data Science 
 3. Docker 23.0.1
 4. Docker Compose v2.3.3
 
+### Upgrading CUDA Version
+
+
+
 ### Setup
 First, please source the HuggingFace AUTH_TOKEN as an environment variable in your terminal 
 ```

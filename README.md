@@ -10,7 +10,13 @@ This repository is part of the workshop covered under the [Applied Data Science 
 
 ### Upgrading CUDA Version
 
+The code in the repository may not run for CUDA versions below 11.6. This will prevent the user to take advantage of the GPU capability and will significantly slow down the inference time. 
 
+To upgrade CUDA to version 12.X on **Ubuntu 20.04** OS please follow these steps:
+
+1. Test
+2. Test
+3. Test
 
 ### Setup
 First, please source the HuggingFace AUTH_TOKEN as an environment variable in your terminal 

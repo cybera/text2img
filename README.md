@@ -23,13 +23,17 @@ To upgrade CUDA to version 12.2 on **Ubuntu 20.04** OS please follow these steps
 1. Run `$nvidia-smi$` command to check for CUDA version.
 2. Delete an old NVIDIA installation with
 
-`$ sudo apt-get --purge remove "*nvidia*"`
+```
+sudo apt-get --purge remove "*nvidia*"
+```
 
 3. Find the driver needed on the nvidia drivers page (https://www.nvidia.com/en-us/drivers/unix/). The link "Latest Production Branch Version: 535.129.03" will yield CUDA version 12.2. Place the downloaded file onto your machine.
 4. Install the driver and CUDA with: 
 
-`$ chmod +x NVIDIA-Linux-x86_64-535.113.01.run` <br>
-`$ sudo ./NVIDIA-Linux-x86_64-535.113.01.run`
+```
+chmod +x NVIDIA-Linux-x86_64-535.113.01.run
+sudo ./NVIDIA-Linux-x86_64-535.113.01.run
+```
 
 5. Install the CUDA toolkit by following the steps in 'Installing with Apt' and then the steps in 'Configuring Docker' sections found at https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 6. Run `$ nvidia-smi` command to check for the new CUDA version.

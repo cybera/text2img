@@ -15,7 +15,11 @@ This guide is organized as:
 
 ### Start a Rapid Access Cloud (RAC) GPU instance
 
-Sing up for a RAC account from https://rac-portal.cybera.ca/users/sign_in. Launch a RAC GPU instance and ensure you are able to use `$ ssh` to access the instance.
+Sing up for a RAC account from https://rac-portal.cybera.ca/users/sign_in. 
+
+Launch a RAC GPU instance using the instructions [here](https://wiki.cybera.ca/display/RAC/GPU+Computing) (note that `g1.*` instances are far more likely to be availabe when considering scaling the project). It can take >30 minutes for the instance to spawn, so don't worry if it seems to be lagging, keep yourself occupied.
+
+After the instance has spun up, ensure you are able to SSH into the instance. Modify the security rules if necessary.
 
 ### Install Docker
 
@@ -78,7 +82,7 @@ sudo mkdir /mnt/<mount_point_name>
 Mount the volume device to the mount point (replace `sdb` with `sdc` as needed):
 
 ```shell
-sudo mount /dev/sdb /mnt/<mount_point_name>
+sudo mount /dev/<mount_point_name> /mnt/<mount_point_name>
 ```
 
 Permissions may need to be changed on the new volume, as they are initially set to root: 
@@ -101,9 +105,9 @@ You must then restart the docker service with:
 sudo service docker restart
 ```
 
-### Upgrading CUDA Version (optional)
+### Specifying CUDA Version
 
-The code in the repository is setup to run for CUDA versions below 11.6 and this section can be skipped.
+The code in the repository is setup to run for CUDA versions below 11.6.
 
 Upgrading the CUDA version may enable running newer images on the RAC GPU instance. 
 
@@ -121,18 +125,7 @@ To upgrade CUDA to version 12.2 on **Ubuntu 20.04** OS please follow these steps
 ```shell
 sudo apt-get --purge remove "*nvidia*"
 ```
-
-3. Find the driver needed on the nvidia drivers page (https://www.nvidia.com/en-us/drivers/unix/). The link "Latest Production Branch Version: 535.129.03" will yield CUDA version 12.2. Place the downloaded file onto your machine.
-4. Install the driver and CUDA with: 
-
-```shell
-chmod +x NVIDIA-Linux-x86_64-535.113.01.run
-sudo ./NVIDIA-Linux-x86_64-535.113.01.run
-```
-
-### Install CUDA Toolkit
-
-Install the CUDA toolkit by following the steps in 'Installing with Apt' and then the steps in 'Configuring Docker' sections found at https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+Next, install the NVIDIA toolkit by following the steps in 'Installing with Apt' and then the steps in 'Configuring Docker' sections found at https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 
 Configure the production repository:
 
@@ -160,6 +153,34 @@ Now configure docker by configuring the container runtime by using the nvidia-ct
 ```shell
 sudo nvidia-ctk runtime configure --runtime=docker
 ```
+
+To clean up any NVIDIA modules in memory, use the following steps:
+```shell
+sudo systemctl isolate multi-user.target
+sudo modprobe -r nvidia-drm
+```
+
+3. Find the driver needed on the nvidia drivers page (https://www.nvidia.com/en-us/drivers/unix/). Each flavour of GPU on RAC requires different drivers:
+
+| RAC Flavour | GPU | NVIDIA Driver
+-|-|-
+g1.* | Tesla K80 | 440.95.01
+g2.* | Titan XP | 535.146.02
+g3.* | Titan RTX | 535.146.02
+
+Download the appropriate driver to your machine:
+
+- [440.95.01](https://www.nvidia.com/Download/driverResults.aspx/160640/en-us/)
+- [535.146.02](https://www.nvidia.com/Download/driverResults.aspx/216728/en-us/)
+
+4. Install the driver and CUDA with: 
+
+```shell
+chmod +x NVIDIA-Linux-x86_64-###.##.##.run
+sudo ./NVIDIA-Linux-x86_64-###.###.##.run
+```
+
+(Answer yes to all prompts during installation)
 
 Restart the Docker daemon:
 

@@ -43,7 +43,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-and run the file with `$ sh install_docker.sh`. 
+and run the file with `$ sh install_docker.sh`.
 
 To ensure the `docker` command can be accessed without `sudo`, run the following commands:
 
@@ -65,7 +65,7 @@ Format the volume:
 sudo mkfs.ext4 /dev/sdc
 ```
 
-List all disks from within the instance with: 
+List all disks from within the instance with:
 
 ```shell
 sudo fdisk -l
@@ -73,7 +73,7 @@ sudo fdisk -l
 
 Look for the disk corresponding to the volume with the assigned amount of space. It will be either `/dev/sdb` or `/dev/sdc`. Remember whether 'b' or 'c' applies here, and use that in place of `<mount_point_name>` below.
 
-Create a mount point for the volume: 
+Create a mount point for the volume:
 
 ```shell
 sudo mkdir /mnt/<mount_point_name>
@@ -85,7 +85,7 @@ Mount the volume device to the mount point:
 sudo mount /dev/sd<mount_point_name> /mnt/<mount_point_name>
 ```
 
-Permissions may need to be changed on the new volume, as they are initially set to root: 
+Permissions may need to be changed on the new volume, as they are initially set to root:
 
 ```shell
 sudo chown ubuntu:ubuntu /mnt/<mount_point_name>
@@ -109,7 +109,7 @@ sudo service docker restart
 
 > &#x26a0; This section can optionally be done for g2.\* and g3.\* instances and will improve performance, but needs to be skipped for g1.\* instances.
 
-Upgrading the CUDA version may enable running newer images on the RAC GPU instance. 
+Upgrading the CUDA version may enable running newer images on the RAC GPU instance.
 
 To upgrade the CUDA version on a Linux machine please follow these general steps:
 
@@ -126,8 +126,8 @@ To upgrade CUDA to version 12.3 on **Ubuntu 20.04** OS please follow these steps
 sudo apt-get --purge remove "*nvidia*"
 ```
 
-3. Find the driver needed on the nvidia drivers page (https://www.nvidia.com/en-us/drivers/unix/). The link "Latest Production Branch Version: 535.146.02" will yield CUDA version 12.3 (latest as of writing, January 2024). Place the downloaded file onto your machine.
-4. Install the driver and CUDA with: 
+3. Find the driver needed on the [NVIDIA drivers page](https://www.nvidia.com/en-us/drivers/unix/). The link "Latest Production Branch Version: 535.146.02" will yield CUDA version 12.3 (latest as of writing, January 2024). Place the downloaded file onto your machine.
+4. Install the driver and CUDA with:
 
 ```shell
 chmod +x NVIDIA-Linux-x86_64-535.146.02.run
@@ -136,7 +136,7 @@ sudo ./NVIDIA-Linux-x86_64-535.146.02.run
 
 ### 5. Install CUDA Toolkit
 
-Install the CUDA toolkit by following the steps in 'Installing with Apt' and then the steps in 'Configuring Docker' sections found at https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+Install the CUDA toolkit by following the steps in 'Installing with Apt' and then the steps in 'Configuring Docker' sections found on the [NVIDIA website](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 Configure the production repository:
 
@@ -181,8 +181,9 @@ Clone the repo into your VM:
 git clone https://github.com/cybera/text2img.git
 ```
 
-Source the Hugging Face AUTH_TOKEN as an environment variable in your terminal 
-```
+Source the Hugging Face AUTH_TOKEN as an environment variable in your terminal
+
+```shell
 export AUTH_TOKEN=''
 ```
 
@@ -194,7 +195,7 @@ AUTH_TOKEN='<hugging face token>'
 
 into it. If following this approach, remember to `source` to restart your shell, or open a new terminal.
 
-Note: If this is your first time using Hugging Face models, please make sure to go through [the documentation](https://huggingface.co/docs/hub/security-tokens) and generate a user access token with the scope as `read`. 
+Note: If this is your first time using Hugging Face models, please make sure to go through [the documentation](https://huggingface.co/docs/hub/security-tokens) and generate a user access token with the scope as `read`.
 
 Then, get the running instance of all the docker services by
 
@@ -217,6 +218,7 @@ After the succesful build, we can access the running services using the followin
 2. The default password for accessing the running instance for JupyterLab container is `gpu-jupyter`
 
 ### References
+
 1. [Set up Your own GPU-based Jupyter easily using Docker](https://cschranz.medium.com/set-up-your-own-gpu-based-jupyterlab-e0d45fcacf43)
 2. [Stable Diffusion with 🧨 Diffusers](https://huggingface.co/blog/stable_diffusion)
 3. [DeepLearning AI: FastAPI for Machine Learning: Live coding an ML web application](https://www.youtube.com/watch?v=_BZGtifh_gw)

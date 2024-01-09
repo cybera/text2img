@@ -7,7 +7,7 @@ import plotly.express as px
 def main():
     st.title("Text2Img: Stable Diffusion App")
     st.info(
-        "Source: [HuggingFace Stable Diffusion with Diffusers blog](https://huggingface.co/blog/stable_diffusio)."
+        "Source: [HuggingFace Stable Diffusion with Diffusers blog](https://huggingface.co/blog/stable_diffusion)."
     )
 
     with st.form("my_form"):

@@ -117,7 +117,7 @@ To upgrade the CUDA version on a Linux machine please follow these general steps
 2. Download and install the new driver
 3. Install the CUDA toolkit
 
-To upgrade CUDA to version 12.2 on **Ubuntu 20.04** OS please follow these steps:
+To upgrade CUDA to version 12.3 on **Ubuntu 20.04** OS please follow these steps:
 
 1. Run `$ nvidia-smi` command to check for CUDA version (should be 10.1)
 2. Delete an old NVIDIA installation with
@@ -126,12 +126,12 @@ To upgrade CUDA to version 12.2 on **Ubuntu 20.04** OS please follow these steps
 sudo apt-get --purge remove "*nvidia*"
 ```
 
-3. Find the driver needed on the nvidia drivers page (https://www.nvidia.com/en-us/drivers/unix/). The link "Latest Production Branch Version: 535.129.03" will yield CUDA version 12.2. Place the downloaded file onto your machine.
+3. Find the driver needed on the nvidia drivers page (https://www.nvidia.com/en-us/drivers/unix/). The link "Latest Production Branch Version: 535.146.02" will yield CUDA version 12.3 (latest as of writing, January 2024). Place the downloaded file onto your machine.
 4. Install the driver and CUDA with: 
 
 ```shell
-chmod +x NVIDIA-Linux-x86_64-535.113.01.run
-sudo ./NVIDIA-Linux-x86_64-535.113.01.run
+chmod +x NVIDIA-Linux-x86_64-535.146.02.run
+sudo ./NVIDIA-Linux-x86_64-535.146.02.run
 ```
 
 ### 5. Install CUDA Toolkit
@@ -173,7 +173,7 @@ sudo systemctl restart docker
 
 Run `$ nvidia-smi` command to check for the new CUDA version to ensure it's been upgraded.
 
-### 6. Start the jupyter, fastapi, and streamlit services
+### 6. Start the JupyterLab, FastAPI, and Streamlit services
 
 Clone the repo into your VM:
 
@@ -181,7 +181,7 @@ Clone the repo into your VM:
 git clone https://github.com/cybera/text2img.git
 ```
 
-Source the HuggingFace AUTH_TOKEN as an environment variable in your terminal 
+Source the Hugging Face AUTH_TOKEN as an environment variable in your terminal 
 ```
 export AUTH_TOKEN=''
 ```
@@ -194,7 +194,7 @@ AUTH_TOKEN='<hugging face token>'
 
 into it. If following this approach, remember to `source` to restart your shell, or open a new terminal.
 
-Note: If this is your first time using HuggingFace models, please make sure to go through [the documentation](https://huggingface.co/docs/hub/security-tokens) and generate a user access token with the scope as `read`. 
+Note: If this is your first time using Hugging Face models, please make sure to go through [the documentation](https://huggingface.co/docs/hub/security-tokens) and generate a user access token with the scope as `read`. 
 
 Then, get the running instance of all the docker services by
 
@@ -209,7 +209,7 @@ After the succesful build, we can access the running services using the followin
 |Service |URL|
 |-----|--------|
 |JupyterLab|http://localhost:8888/|
-|FAST API  |http://localhost:8000/docs|
+|FastAPI  |http://localhost:8000/docs|
 |Streamlit  |http://localhost:8501/app|
 
 1. If you are running this on a remote cloud server, make sure to do relevant port forwarding

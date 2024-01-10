@@ -82,7 +82,7 @@ sudo mkdir /mnt/<mount_point_name>
 Mount the volume device to the mount point:
 
 ```shell
-sudo mount /dev/sd<mount_point_name> /mnt/<mount_point_name>
+sudo mount /dev/<mount_point_name> /mnt/<mount_point_name>
 ```
 
 Permissions may need to be changed on the new volume, as they are initially set to root:

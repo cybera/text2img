@@ -206,6 +206,8 @@ After the succesful build, we can access the running services using the followin
 
 2. The default password for accessing the running instance for JupyterLab container is `gpu-jupyter`
 
+3. Refer to the `modelcard.md` and `datasetcard.md` for information about the model and the data it was trained on
+
 ### References
 1. [Set up Your own GPU-based Jupyter easily using Docker](https://cschranz.medium.com/set-up-your-own-gpu-based-jupyterlab-e0d45fcacf43)
 2. [Stable Diffusion with 🧨 Diffusers](https://huggingface.co/blog/stable_diffusion)

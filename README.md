@@ -119,7 +119,7 @@ To upgrade the CUDA version on a Linux machine please follow these general steps
 
 To upgrade CUDA to version 12.3 on **Ubuntu 20.04** OS please follow these steps:
 
-1. Run `$ nvidia-smi` command to check for CUDA version (should be 10.1)
+1. Run `$ nvidia-smi` command to check for CUDA version (should be 11.1)
 2. Delete an old NVIDIA installation with
 
 ```shell

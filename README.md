@@ -1,6 +1,6 @@
 # text2img
 
-This repository is part of the workshop covered under the [Applied Data Science Lab (ADSL)](https://www.cybera.ca/adsl/) program.
+This repository is part of the workshop covered under the <a href="https://www.cybera.ca/adsl/" target="_blank">Applied Data Science Lab</a> program.
 
 This workshop utilizes the stable diffusion method to generate images from text prompts.
 
@@ -15,15 +15,15 @@ This guide is organized as:
 
 ### 1. Start a Rapid Access Cloud (RAC) GPU instance
 
-Sign up for a RAC account from the [RAC portal](https://rac-portal.cybera.ca/users/sign_in). Ensure you're accessing RAC from the Edmonton region, then Launch a RAC GPU instance and ensure you are able to use `$ ssh` to access the instance.
+Sign up for a RAC account from the <a href="https://rac-portal.cybera.ca/users/sign_in" target="_blank">RAC portal</a>. Ensure you're accessing RAC from the Edmonton region, then Launch a RAC GPU instance and ensure you are able to use `$ ssh` to access the instance.
 
 > &#x26a0; You can use any GPU flavour to host the `text2img` project, but if opting for **g1.\*** make sure to skip the "Upgrading CUDA Version" step
 
-Attach a volume to your instance, at least 80 GB (ideally 100 GB) using the instructions [here.](https://wiki.cybera.ca/display/RAC/Rapid+Access+Cloud+Guide%3A+Part+1#RapidAccessCloudGuide:Part1-Volumes)
+Attach a volume to your instance, at least 80 GB (ideally 100 GB) using the instructions <a href="https://wiki.cybera.ca/display/RAC/Rapid+Access+Cloud+Guide%3A+Part+1#RapidAccessCloudGuide:Part1-Volumes" target="_blank">here</a>.
 
 ### 2. Install Docker
 
-Paste the following script ([from Docker installation website](https://docs.docker.com/engine/install/ubuntu/)) into an `install_docker.sh` file:
+Paste the following script (<a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank">from Docker installation website</a>) into an `install_docker.sh` file:
 
 ```shell
 # Add Docker's official GPG key:
@@ -126,7 +126,7 @@ To upgrade CUDA to version 12.3 on **Ubuntu 20.04** OS please follow these steps
 sudo apt-get --purge remove "*nvidia*"
 ```
 
-3. Find the driver needed on the [NVIDIA drivers page](https://www.nvidia.com/en-us/drivers/unix/). The link "Latest Production Branch Version: 535.146.02" will yield CUDA version 12.3 (latest as of writing, January 2024). Place the downloaded file onto your machine.
+3. Find the driver needed on the <a href="https://www.nvidia.com/en-us/drivers/unix/" target="_blank">NVIDIA drivers page</a>. The link "Latest Production Branch Version: 535.146.02" will yield CUDA version 12.3 (latest as of writing, January 2024). Place the downloaded file onto your machine.
 4. Install the driver and CUDA with:
 
 ```shell
@@ -136,7 +136,7 @@ sudo ./NVIDIA-Linux-x86_64-535.146.02.run
 
 ### 5. Install CUDA Toolkit
 
-Install the CUDA toolkit by following the steps in 'Installing with Apt' and then the steps in 'Configuring Docker' sections found on the [NVIDIA website](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+Install the CUDA toolkit by following the steps in 'Installing with Apt' and then the steps in 'Configuring Docker' sections found on the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html" target="_blank">NVIDIA website</a>.
 
 Configure the production repository:
 
@@ -193,9 +193,9 @@ or create a `.env` file in the same level as the `docker-compose.yml` file and p
 AUTH_TOKEN='<hugging face token>'
 ```
 
-into it. If following this approach, remember to `source` to restart your shell, or open a new terminal.
+into it.
 
-Note: If this is your first time using Hugging Face models, please make sure to go through [the documentation](https://huggingface.co/docs/hub/security-tokens) and generate a user access token with the scope as `read`.
+Note: If this is your first time using Hugging Face models, please make sure to go through <a href="https://huggingface.co/docs/hub/security-tokens" target="_blank">the documentation</a> and generate a user access token with the scope as `read`.
 
 Then, get the running instance of all the docker services by
 
@@ -219,7 +219,7 @@ After the succesful build, we can access the running services using the followin
 
 ### References
 
-1. [Set up Your own GPU-based Jupyter easily using Docker](https://cschranz.medium.com/set-up-your-own-gpu-based-jupyterlab-e0d45fcacf43)
-2. [Stable Diffusion with 🧨 Diffusers](https://huggingface.co/blog/stable_diffusion)
-3. [DeepLearning AI: FastAPI for Machine Learning: Live coding an ML web application](https://www.youtube.com/watch?v=_BZGtifh_gw)
-4. [Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.](https://arxiv.org/abs/2112.10752)
+1. <a href="https://cschranz.medium.com/" target="_blank">Set up Your own GPU-based Jupyter easily using Docker<a/>
+2. <a href="https://huggingface.co/blog/stable_diffusion" target="_blank">Stable Diffusion with 🧨 Diffusers</a>
+3. <a href="https://www.youtube.com/watch?v=_BZGtifh_gw" target="_blank">DeepLearning AI: FastAPI for Machine Learning: Live coding an ML web application</a>
+4. <a href="https://arxiv.org/abs/2112.10752" target="_blank">Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.</a>

@@ -4,11 +4,9 @@
 {{ card_data }}
 ---
 
-# Dataset Card for {{ pretty_name | default("Dataset Name", true) }}
+# Dataset Card for text2img
 
 <!-- Provide a quick summary of the dataset. -->
-
-{{ dataset_summary | default("", true) }}
 
 ## Dataset Details
 
@@ -16,21 +14,19 @@
 
 <!-- Provide a longer summary of what this dataset is. -->
 
-{{ dataset_description | default("", true) }}
-
-- **Curated by:** {{ curators | default("[More Information Needed]", true)}}
-- **Funded by [optional]:** {{ funded_by | default("[More Information Needed]", true)}}
-- **Shared by [optional]:** {{ shared_by | default("[More Information Needed]", true)}}
-- **Language(s) (NLP):** {{ language | default("[More Information Needed]", true)}}
-- **License:** {{ license | default("[More Information Needed]", true)}}
+- **Curated by:** Cybera, Inc
+- **Funded by [optional]:** [More Information Needed]
+- **Shared by [optional]:** Cybera, Inc
+- **Language(s) (NLP):** English (American)
+- **License:** Creative Common CC-BY 4.0
 
 ### Dataset Sources [optional]
 
 <!-- Provide the basic links for the dataset. -->
 
-- **Repository:** {{ repo | default("[More Information Needed]", true)}}
-- **Paper [optional]:** {{ paper | default("[More Information Needed]", true)}}
-- **Demo [optional]:** {{ demo | default("[More Information Needed]", true)}}
+- **Repository:** https://the-eye.eu/public/AI/cah/laion5b/embeddings/laion2B-en/
+- **Paper [optional]:** https://arxiv.org/abs/2210.08402
+- **Demo [optional]:** https://huggingface.co/CompVis/stable-diffusion
 
 ## Uses
 
@@ -52,19 +48,31 @@
 
 <!-- This section provides a description of the dataset fields, and additional information about the dataset structure such as criteria used to create the splits, relationships between data points, etc. -->
 
-{{ dataset_structure | default("[More Information Needed]", true)}}
+>We provide these columns :\
+\
+    URL: the image url, millions of domains are covered\
+    TEXT: captions, in english for en, other languages for multi and nolang\
+    WIDTH: picture width\
+    HEIGHT: picture height\
+    LANGUAGE: the language of the sample, only for laion2B-multi, computed using cld3\
+    similarity: cosine between text and image ViT-B/32 embeddings, clip for en, mclip for multi and nolang\
+    pwatermark: probability of being a watermarked image, computed using our watermark detector\
+    punsafe: probability of being an unsafe image, computed using our clip based detector\
+    \
+pwatermark and punsafe are available either as individual collections that must be joined with the hash of url+text, either as prejoined collections.
+\- https://laion.ai/blog/laion-5b/
 
 ## Dataset Creation
 
 ### Curation Rationale
 
-<!-- Motivation for the creation of this dataset. -->
-
-{{ curation_rationale_section | default("[More Information Needed]", true)}}
+>Since the release of CLIP & DALL-E in January 2021, several similar large multi-modal language-vision models have been trained by large groups. Models like FLORENCE, Turing Bletchley, ALIGN & BASIC demonstrated very strong transfer capabilities on novel datasets in absence of per-sample labels, which also steadily improved when growing training data amount, following scaling laws observed in previous research work. These models require billions of image-text pairs to achieve competitive performances and unfortunately, no billion-scale image-text pair dataset had been openly available up until now. To address this problem we release LAION 5B, a CLIP-filtered dataset of 5,85 billion high-quality image-text pairs, their CLIP ViT-L/14 embeddings, kNN-indices, a web interface for exploration & subset-creation and NSFW- and watermark-detection scores and tools. We describe the procedure to create the dataset and demonstrate successful training of DALL-E architecture. Having sufficiently large scales, the dataset opens venues for research on multi-modal language-vision models to a broad community.
+\- https://laion.ai/blog/laion-5b/
 
 ### Source Data
 
-<!-- This section describes the source data (e.g. news text and headlines, social media posts, translated sentences, ...). -->
+> To create image-text pairs, we parse through WAT files from Common Crawl and parse out all HTML IMG tags containing an alt-text attribute. At the same time, we perform a language detection on text with three possible outputs: English language with confidence, another language with confidence, no language which contains “no detection” and “detection under the confidence threshold”. The “no language” set often contains short texts, mostly with names of people and places. All extracted information by the preprocessing workers were packed and sent to the Postgresql node for storage using the COPY command. The Postgresql server was maintained to keep about 500M records at all times by means of balancing the ingress and egress of data from the database.
+\- https://laion.ai/blog/laion-5b/
 
 #### Data Collection and Processing
 
@@ -74,9 +82,7 @@
 
 #### Who are the source data producers?
 
-<!-- This section describes the people or systems who originally created the data. It should also include self-reported demographic or identity information for the source data creators if this information is available. -->
-
-{{ source_data_producers_section | default("[More Information Needed]", true)}}
+Christoph Schuhmann, Richard Vencu, Romain Beaumont, Theo Coombes, Cade Gordon, Aarush Katta, Robert Kaczmarczyk, Jenia Jitsev
 
 ### Annotations [optional]
 
@@ -118,11 +124,11 @@
 
 **BibTeX:**
 
-{{ citation_bibtex | default("[More Information Needed]", true)}}
+N/A
 
 **APA:**
 
-{{ citation_apa | default("[More Information Needed]", true)}}
+N/A
 
 ## Glossary [optional]
 
@@ -132,11 +138,13 @@
 
 ## More Information [optional]
 
-{{ more_information | default("[More Information Needed]", true)}}
+It's important to note that in late 2023, a [Stanford study](https://www.forbes.com/sites/alexandralevine/2023/12/20/stable-diffusion-child-sexual-abuse-material-stanford-internet-observatory/?sh=390751585f21) found that some of the images contained within the LAION 5B dataset may be considered [CSAM](https://www.cybertip.ca/en/child-sexual-abuse/material/).
+
+The LAION 5B dataset in question was used to train Stable Diffusion v1.5 and later, so _to the best of our knowledge_ there is no specific concern about the LAION 2B dataset used to train this model, and no reason to expect similar findings. If similar information comes to light about the LAION 2B dataset, this repo will either be updated to use a different model and dataset, or removed entirely.
 
 ## Dataset Card Authors [optional]
 
-{{ dataset_card_authors | default("[More Information Needed]", true)}}
+Jordan Swanson (Cybera, Inc); 
 
 ## Dataset Card Contact
 

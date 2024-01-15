@@ -14,8 +14,8 @@
 
 <!-- Provide a longer summary of what this dataset is. -->
 
-- **Curated by:** Cybera, Inc
-- **Funded by [optional]:** [More Information Needed]
+- **Curated by:** [LAION.ai](https://laion.ai/)
+- **Funded by [optional]:** N/A
 - **Shared by [optional]:** Cybera, Inc
 - **Language(s) (NLP):** English (American)
 - **License:** Creative Common CC-BY 4.0
@@ -35,14 +35,21 @@
 ### Direct Use
 
 <!-- This section describes suitable use cases for the dataset. -->
-
-{{ direct_use | default("[More Information Needed]", true)}}
+>Laion5B and LAION-400M could e.g. be used to train:\
+\
+    - Generative models: training image/text generative models, e.g autoregressive models like DALL-E or diffusion models like GLIDE \
+    - Models with contrastive losses: self-supervised training on image/text pairs using contrastive losses, e.g CLIP \
+    - Classification models: e.g, performing zero-shot classification by extracting pseudo labels from queries on the dataset
+\
+\
+We present here a few examples of models that were trained on our LAION datasets with success:
+(https://laion.ai/blog/laion-5b/#using-laion-datasets)
 
 ### Out-of-Scope Use
 
 <!-- This section addresses misuse, malicious use, and uses that the dataset will not work well for. -->
 
-{{ out_of_scope_use | default("[More Information Needed]", true)}}
+> The motivation behind dataset creation is to democratize research and experimentation around large-scale multi-modal model training and handling of uncurated, large-scale datasets crawled from publically available internet. Our recommendation is therefore to use the dataset for research purposes. Be aware that this large-scale dataset is uncurated. Keep in mind that the uncurated nature of the dataset means that collected links may lead to strongly discomforting and disturbing content for a human viewer. Therefore, please use the demo links with caution and at your own risk. It is possible to extract a “safe” subset by filtering out samples based on the safety tags (using a customized trained NSFW classifier that we built). While this strongly reduces the chance for encountering potentially harmful content when viewing, we cannot entirely exclude the possibility for harmful content being still present in safe mode, so that the warning holds also there. We think that providing the dataset openly to broad research and other interested communities will allow for transparent investigation of benefits that come along with training large-scale models as well as pitfalls and dangers that may stay unreported or unnoticed when working with closed large datasets that remain restricted to a small community. Providing our dataset openly, we however **do not recommend using it for creating ready-to-go industrial products, as the basic research about general properties and safety of such large-scale models, which we would like to encourage with this release, is still in progress**. - https://laion.ai/blog/laion-5b/#disclaimer-on-dataset-purpose-and-content-warning
 
 ## Dataset Structure
 
@@ -50,14 +57,14 @@
 
 >We provide these columns :\
 \
-    URL: the image url, millions of domains are covered\
-    TEXT: captions, in english for en, other languages for multi and nolang\
-    WIDTH: picture width\
-    HEIGHT: picture height\
-    LANGUAGE: the language of the sample, only for laion2B-multi, computed using cld3\
-    similarity: cosine between text and image ViT-B/32 embeddings, clip for en, mclip for multi and nolang\
-    pwatermark: probability of being a watermarked image, computed using our watermark detector\
-    punsafe: probability of being an unsafe image, computed using our clip based detector\
+    - URL: the image url, millions of domains are covered\
+    - TEXT: captions, in english for en, other languages for multi and nolang\
+    - WIDTH: picture width\
+    - HEIGHT: picture height\
+    - LANGUAGE: the language of the sample, only for laion2B-multi, computed using cld3\
+    - similarity: cosine between text and image ViT-B/32 embeddings, clip for en, mclip for multi and nolang\
+    - pwatermark: probability of being a watermarked image, computed using our watermark detector\
+    - punsafe: probability of being an unsafe image, computed using our clip based detector\
     \
 pwatermark and punsafe are available either as individual collections that must be joined with the hash of url+text, either as prejoined collections.
 \- https://laion.ai/blog/laion-5b/#dataset-columns
@@ -88,6 +95,8 @@ LAION: Christoph Schuhmann, Richard Vencu, Romain Beaumont, Theo Coombes, Cade G
 
 <!-- If the dataset contains annotations which are not part of the initial data collection, use this section to describe them. -->
 
+[More Information Needed]
+
 #### Annotation process
 
 <!-- This section describes the annotation process such as annotation tools used in the process, the amount of data annotated, annotation guidelines provided to the annotators, interannotator statistics, annotation validation, etc. -->
@@ -114,31 +123,39 @@ For more information, refer to [Common Crawl's Terms of Use](https://commoncrawl
 
 <!-- This section is meant to convey both technical and sociotechnical limitations. -->
 
-{{ bias_risks_limitations | default("[More Information Needed]", true)}}
+See [Out of Scope Use](#out-of-scope-use)
 
 ### Recommendations
 
 <!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
 
-{{ bias_recommendations | default("Users should be made aware of the risks, biases and limitations of the dataset. More information needed for further recommendations.", true)}}
+"Users should be made aware of the risks, biases and limitations of the dataset. More information needed for further recommendations."
 
 ## Citation [optional]
 
 <!-- If there is a paper or blog post introducing the dataset, the APA and Bibtex information for that should go in this section. -->
 
 **BibTeX:**
-
-N/A
+```
+@misc{schuhmann2022laion5b,
+      title={LAION-5B: An open large-scale dataset for training next generation image-text models}, 
+      author={Christoph Schuhmann and Romain Beaumont and Richard Vencu and Cade Gordon and Ross Wightman and Mehdi Cherti and Theo Coombes and Aarush Katta and Clayton Mullis and Mitchell Wortsman and Patrick Schramowski and Srivatsa Kundurthy and Katherine Crowson and Ludwig Schmidt and Robert Kaczmarczyk and Jenia Jitsev},
+      year={2022},
+      eprint={2210.08402},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
 
 **APA:**
 
-N/A
+Schuhmann, C., Beaumont, R., Vencu, R., Gordon, C., Wightman, R., Cherti, M., ... & Jitsev, J. (2022). Laion-5b: An open large-scale dataset for training next generation image-text models. Advances in Neural Information Processing Systems, 35, 25278-25294.
 
 ## Glossary [optional]
 
 <!-- If relevant, include terms and calculations in this section that can help readers understand the dataset or dataset card. -->
 
-{{ glossary | default("[More Information Needed]", true)}}
+[More Information Needed]
 
 ## More Information [optional]
 
@@ -148,8 +165,8 @@ The LAION 5B dataset in question was used to train Stable Diffusion v1.5 and lat
 
 ## Dataset Card Authors [optional]
 
-Jordan Swanson (Cybera, Inc); 
+Jordan Swanson (Cybera, Inc); [More Information Needed]
 
 ## Dataset Card Contact
 
-{{ dataset_card_contact | default("[More Information Needed]", true)}}
+[More Information Needed]

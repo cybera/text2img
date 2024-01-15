@@ -60,29 +60,29 @@
     punsafe: probability of being an unsafe image, computed using our clip based detector\
     \
 pwatermark and punsafe are available either as individual collections that must be joined with the hash of url+text, either as prejoined collections.
-\- https://laion.ai/blog/laion-5b/
+\- https://laion.ai/blog/laion-5b/#dataset-columns
 
 ## Dataset Creation
 
 ### Curation Rationale
 
 >Since the release of CLIP & DALL-E in January 2021, several similar large multi-modal language-vision models have been trained by large groups. Models like FLORENCE, Turing Bletchley, ALIGN & BASIC demonstrated very strong transfer capabilities on novel datasets in absence of per-sample labels, which also steadily improved when growing training data amount, following scaling laws observed in previous research work. These models require billions of image-text pairs to achieve competitive performances and unfortunately, no billion-scale image-text pair dataset had been openly available up until now. To address this problem we release LAION 5B, a CLIP-filtered dataset of 5,85 billion high-quality image-text pairs, their CLIP ViT-L/14 embeddings, kNN-indices, a web interface for exploration & subset-creation and NSFW- and watermark-detection scores and tools. We describe the procedure to create the dataset and demonstrate successful training of DALL-E architecture. Having sufficiently large scales, the dataset opens venues for research on multi-modal language-vision models to a broad community.
-\- https://laion.ai/blog/laion-5b/
+\- https://laion.ai/blog/laion-5b/#introduction
 
 ### Source Data
 
 > To create image-text pairs, we parse through WAT files from Common Crawl and parse out all HTML IMG tags containing an alt-text attribute. At the same time, we perform a language detection on text with three possible outputs: English language with confidence, another language with confidence, no language which contains “no detection” and “detection under the confidence threshold”. The “no language” set often contains short texts, mostly with names of people and places. All extracted information by the preprocessing workers were packed and sent to the Postgresql node for storage using the COPY command. The Postgresql server was maintained to keep about 500M records at all times by means of balancing the ingress and egress of data from the database.
-\- https://laion.ai/blog/laion-5b/
+\- https://laion.ai/blog/laion-5b/#distributed-processing-of-common-crawl
 
 #### Data Collection and Processing
 
 <!-- This section describes the data collection and processing process such as data selection criteria, filtering and normalization methods, tools and libraries used, etc. -->
 
-{{ data_collection_and_processing_section | default("[More Information Needed]", true)}}
+Refer to LAION's [Acquisition pipeline section](https://laion.ai/blog/laion-5b/#acquisition-pipeline)
 
 #### Who are the source data producers?
 
-Christoph Schuhmann, Richard Vencu, Romain Beaumont, Theo Coombes, Cade Gordon, Aarush Katta, Robert Kaczmarczyk, Jenia Jitsev
+LAION: Christoph Schuhmann, Richard Vencu, Romain Beaumont, Theo Coombes, Cade Gordon, Aarush Katta, Robert Kaczmarczyk, Jenia Jitsev
 
 ### Annotations [optional]
 
@@ -92,19 +92,23 @@ Christoph Schuhmann, Richard Vencu, Romain Beaumont, Theo Coombes, Cade Gordon, 
 
 <!-- This section describes the annotation process such as annotation tools used in the process, the amount of data annotated, annotation guidelines provided to the annotators, interannotator statistics, annotation validation, etc. -->
 
-{{ annotation_process_section | default("[More Information Needed]", true)}}
+Distributed filtering of Common Crawl using OpenAI CLIP (via [Crawling@Home](https://github.com/rvencu/crawlingathome-gpu-hcloud))
+
+>To create image-text pairs, we parse through WAT files from Common Crawl and parse out all HTML IMG tags containing an alt-text attribute. At the same time, we perform a language detection on text with three possible outputs: English language with confidence, another language with confidence, no language which contains “no detection” and “detection under the confidence threshold”. The “no language” set often contains short texts, mostly with names of people and places. All extracted information by the preprocessing workers were packed and sent to the Postgresql node for storage using the COPY command. The Postgresql server was maintained to keep about 500M records at all times by means of balancing the ingress and egress of data from the database.  - https://laion.ai/blog/laion-5b/#distributed-processing-of-common-crawl
 
 #### Who are the annotators?
 
 <!-- This section describes the people or systems who created the annotations. -->
 
-{{ who_are_annotators_section | default("[More Information Needed]", true)}}
+[More Information Needed]
 
 #### Personal and Sensitive Information
 
 <!-- State whether the dataset contains data that might be considered personal, sensitive, or private (e.g., data that reveals addresses, uniquely identifiable names or aliases, racial or ethnic origins, sexual orientations, religious beliefs, political opinions, financial or health data, etc.). If efforts were made to anonymize the data, describe the anonymization process. -->
 
-{{ personal_and_sensitive_information | default("[More Information Needed]", true)}}
+Source data comes from Common Crawl, which is a freely available crawl of the public internet, and assumes data freely available online would not be considered sensitive.
+
+For more information, refer to [Common Crawl's Terms of Use](https://commoncrawl.org/terms-of-use)
 
 ## Bias, Risks, and Limitations
 

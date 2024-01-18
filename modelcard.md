@@ -1,7 +1,6 @@
 ---
 # For reference on model card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/modelcard.md?plain=1
 # Doc / guide: https://huggingface.co/docs/hub/model-cards
-{{ card_data }}
 ---
 
 # Model Card for Stable Diffusion v1.4
@@ -330,6 +329,8 @@ steps show the relative improvements of the checkpoints:
 ![pareto](https://huggingface.co/CompVis/stable-diffusion/resolve/main/v1-variants-scores.jpg)
 
 Evaluated using 50 PLMS steps and 10000 random prompts from the COCO2017 validation set, evaluated at 512x512 resolution.  Not optimized for FID scores.
+
+For information on CLIP scores and how they're used in image captioning, [refer to this web page](https://wandb.ai/dalle-mini/dalle-mini/reports/CLIP-score-vs-FID-pareto-curves--VmlldzoyMDYyNTAy#calculating-clip-score)
 
 
 ### Testing Data, Factors & Metrics
